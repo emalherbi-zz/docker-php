@@ -1,0 +1,22 @@
+php:
+  build: .
+  ports:
+    - "8086:80"
+    - "8088:443"
+  volumes:
+    - ./www:/var/www/html
+  links:
+    - db:mysql
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  links:
+    - db:mysql
+  ports:
+    - "8087:80"
+  environment:
+    MYSQL_USERNAME: root
+    MYSQL_ROOT_PASSWORD: root
