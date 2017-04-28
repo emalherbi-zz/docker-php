@@ -1,6 +1,6 @@
 # apache-php-mysql-mssql-phpmyadmin
 
-Docker && Apache && Php && Mysql && Mssql (FreeTDS) && PhpMyAdmin
+Docker && Apache && Php && Mysql (mysql || pdo_mysql) && Mssql (FreeTDS) && PhpMyAdmin
 
 ## Install
 
