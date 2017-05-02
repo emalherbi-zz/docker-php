@@ -2,7 +2,7 @@ php:
   build: .
   ports:
     - "8086:80"
-    - "443:443"
+    - "8089:443"
   volumes:
     - ./www:/var/www/html
   links:
@@ -10,7 +10,7 @@ php:
 db:
   image: mariadb
   ports:
-    - "3306:3306"
+    - "8088:3306"
   environment:
     MYSQL_ROOT_PASSWORD: root
     MYSQL_USER: root
