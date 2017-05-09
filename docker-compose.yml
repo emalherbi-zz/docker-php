@@ -7,6 +7,12 @@ php:
     - ./www:/var/www/html
   links:
     - db
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  links:
+    - db
+  ports:
+    - "8087:80"
 db:
   image: mariadb
   ports:
@@ -15,9 +21,3 @@ db:
     MYSQL_ROOT_PASSWORD: root
     MYSQL_USER: root
     MYSQL_PASSWORD: root
-phpmyadmin:
-  image: phpmyadmin/phpmyadmin
-  links:
-    - db
-  ports:
-    - "8087:80"
