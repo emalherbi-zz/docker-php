@@ -1,19 +1,25 @@
 FROM php:5.6-apache
 MAINTAINER Eduardo Malherbi <emalherbi@gmail.com>
 
-# mssql
-RUN apt-get update && apt-get install -y freetds-dev && rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-configure mssql --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install mssql
-
 # mysql
 RUN docker-php-ext-install mysql
 RUN docker-php-ext-install pdo_mysql
 
+# mssql
+RUN apt-get update && apt-get install -y freetds-dev && rm -rf /var/lib/apt/lists/*
+RUN docker-php-ext-configure mssql --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install mssql
+
+# zlib
+RUN apt-get update && apt-get install -y zlib1g-dev && rm -rf /var/lib/apt/lists/* && docker-php-ext-install zip
+
 # rewrite
 RUN a2enmod rewrite
 
-# Edit 000-default.conf to change apache site settings.
+# 000-default.conf to change apache site settings.
 ADD 000-default.conf /etc/apache2/sites-available/
+
+# Ini
+COPY php.ini /usr/local/etc/php/
 
 # Uncomment these two lines to fix "non-UTF8" chars encoding and time format problems
 ADD freetds.conf /etc/freetds/

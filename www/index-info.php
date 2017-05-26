@@ -13,14 +13,14 @@ foreach ($envVars as $envVar) {
   echo nl2br("<b>{$envVar}</b>: {$envValue}\n");
 }
 
-echo nl2br("\n");
-$link = mysql_connect('db', 'root', 'root') or die('Error: ' . mysql_error());
-echo nl2br("Connection successfully completed! (mysql)\n");
-mysql_close($link);
-
-$link = mssql_connect('RELEASEK', 'SA', 'XPT2000') or die('Error: ' . mssql_get_last_message());
-echo nl2br("Connection successfully completed! (mssql)\n");
-mssql_close($link);
+// echo nl2br("\n");
+// $link = mysql_connect('db', 'root', 'root') or die('Error: ' . mysql_error());
+// echo nl2br("Connection successfully completed! (mysql)\n");
+// mysql_close($link);
+//
+// $link = mssql_connect('RELEASEK', 'SA', 'XPT2000') or die('Error: ' . mssql_get_last_message());
+// echo nl2br("Connection successfully completed! (mssql)\n");
+// mssql_close($link);
 
 echo nl2br("\n");
 phpInfo();
