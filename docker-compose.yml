@@ -1,4 +1,5 @@
 php:
+  container_name: php
   build: .
   ports:
     - "8086:80"
@@ -8,12 +9,14 @@ php:
   links:
     - db
 phpmyadmin:
+  container_name: phpmyadmin
   image: phpmyadmin/phpmyadmin
   links:
     - db
   ports:
     - "8087:80"
 db:
+  container_name: db
   image: mariadb
   ports:
     - "8088:3306"

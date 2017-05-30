@@ -1,6 +1,9 @@
 FROM php:5.6-apache
 MAINTAINER Eduardo Malherbi <emalherbi@gmail.com>
 
+# apt utils
+RUN apt-get update && apt-get install -y apt-utils && rm -rf /var/lib/apt/lists/*
+
 # mysql
 RUN docker-php-ext-install mysql
 RUN docker-php-ext-install pdo_mysql
@@ -9,11 +12,14 @@ RUN docker-php-ext-install pdo_mysql
 RUN apt-get update && apt-get install -y freetds-dev && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure mssql --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install mssql
 
+# rewrite
+RUN a2enmod rewrite
+
 # zlib
 RUN apt-get update && apt-get install -y zlib1g-dev && rm -rf /var/lib/apt/lists/* && docker-php-ext-install zip
 
-# rewrite
-RUN a2enmod rewrite
+# socket
+RUN docker-php-ext-install sockets
 
 # 000-default.conf to change apache site settings.
 ADD 000-default.conf /etc/apache2/sites-available/
