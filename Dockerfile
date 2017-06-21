@@ -11,6 +11,7 @@ RUN docker-php-ext-install pdo_mysql
 # mssql
 RUN apt-get update && apt-get install -y freetds-dev && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure mssql --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install mssql
+RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/x86_64-linux-gnu && docker-php-ext-install pdo_dblib
 
 # rewrite
 RUN a2enmod rewrite
