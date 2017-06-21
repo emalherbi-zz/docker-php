@@ -5,7 +5,7 @@ Docker && Apache && Php && Mysql (mysql || pdo_mysql) && Mssql (FreeTDS) && PhpM
 ## Install
 
 ```bash
-docker-compose up -d
+docker-compose up -d --force-recreate
 ```
 
 ## Document Root
