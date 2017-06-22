@@ -1,8 +1,28 @@
-# apache-php-mysql-mssql-phpmyadmin
+# docker-php
 
-Docker && Apache && Php && Mysql (mysql || pdo_mysql) && Mssql (FreeTDS) && PhpMyAdmin
+Docker && Apache && Php && Mysql (mysql | pdo_mysql) && Mssql (mssql | pdo_dblib | freetds) && PhpMyAdmin
 
-## Install
+## Requirements
+
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
+
+## About this docker's settings
+
+- apache
+- php:5.6
+- mysql
+- pdo_mysql
+- mssql
+- pdo_dblib
+- freetds
+- rewrite
+- zlib
+- sockets
+- phpmyadmin
+- mariadb
+
+## Installation
 
 ```bash
 docker-compose up -d --force-recreate
@@ -12,6 +32,7 @@ docker-compose up -d --force-recreate
 
 ```
 www
+|- index-info.php
 ```
 
 ## Server Root
