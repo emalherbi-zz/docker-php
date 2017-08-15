@@ -6,8 +6,8 @@ RUN apt-get update && \
     apt-get install -y apt-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# mysql
-RUN docker-php-ext-install mysql
+# mysql / mysqli
+RUN docker-php-ext-install mysql mysqli
 RUN docker-php-ext-install pdo_mysql
 
 # mssql
@@ -24,6 +24,14 @@ RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/x86_64-linux-gnu && \
 # rewrite
 RUN a2enmod rewrite
 
+# libpng
+RUN apt-get update && \
+    apt-get install -y sendmail libpng-dev
+
+# zlib1g
+RUN apt-get update && \
+    apt-get install -y zlib1g-dev
+
 # zlib
 RUN apt-get update && \
     apt-get install -y zlib1g-dev && \
@@ -32,6 +40,15 @@ RUN apt-get update && \
 
 # socket
 RUN docker-php-ext-install sockets
+
+# mbstring
+RUN docker-php-ext-install mbstring
+
+# zip
+RUN docker-php-ext-install zip
+
+# gd
+RUN docker-php-ext-install gd
 
 # phpmyadmin
 # RUN PHPMYADMIN_VERSION=4.6.4 && \
