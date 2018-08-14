@@ -1,20 +1,17 @@
 FROM php:5.6-apache
 MAINTAINER Eduardo Malherbi <emalherbi@gmail.com>
 
-# apt utils
+# utils
 RUN apt-get update && \
-    apt-get install -y apt-utils && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y apt-utils freetds-dev sendmail libpng-dev zlib1g-dev
+
+# zip, socket, mbstring
+RUN docker-php-ext-install zip sockets mbstring gd
 
 # mysql / mysqli
-RUN docker-php-ext-install mysql mysqli
-RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mysql mysqli pdo_mysql
 
 # mssql
-RUN apt-get update && \
-    apt-get install -y freetds-dev && \
-    rm -rf /var/lib/apt/lists/*
-
 RUN docker-php-ext-configure mssql --with-libdir=lib/x86_64-linux-gnu && \
     docker-php-ext-install mssql
 
@@ -24,38 +21,8 @@ RUN docker-php-ext-configure pdo_dblib --with-libdir=lib/x86_64-linux-gnu && \
 # rewrite
 RUN a2enmod rewrite
 
-# libpng
-RUN apt-get update && \
-    apt-get install -y sendmail libpng-dev
-
-# zlib1g
-RUN apt-get update && \
-    apt-get install -y zlib1g-dev
-
-# zlib
-RUN apt-get update && \
-    apt-get install -y zlib1g-dev && \
-    rm -rf /var/lib/apt/lists/* && \
-    docker-php-ext-install zip
-
-# socket
-RUN docker-php-ext-install sockets
-
-# mbstring
-RUN docker-php-ext-install mbstring
-
-# zip
-RUN docker-php-ext-install zip
-
-# gd
-RUN docker-php-ext-install gd
-
-# phpmyadmin
-# RUN PHPMYADMIN_VERSION=4.6.4 && \
-    # curl https://files.phpmyadmin.net/phpMyAdmin/${PHPMYADMIN_VERSION}/phpMyAdmin-${PHPMYADMIN_VERSION}-all-languages.tar.gz | tar --extract --gunzip --file - --strip-components 1 && \
-    # rm -rf examples && \
-    # rm -rf setup && \
-    # rm -rf sql
+# remove list
+RUN rm -rf /var/lib/apt/lists/*
 
 # 000-default.conf to change apache site settings.
 ADD 000-default.conf /etc/apache2/sites-available/
