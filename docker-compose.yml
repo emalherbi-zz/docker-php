@@ -1,5 +1,5 @@
 php:
-  container_name: php
+  container_name: php5
   build: .
   links:
     - db
@@ -9,7 +9,7 @@ php:
   volumes:
     - ./www:/var/www/html
 db:
-  container_name: db
+  container_name: db5
   image: mariadb
   ports:
     - "8088:3306"
@@ -18,9 +18,9 @@ db:
     MYSQL_USER: root
     MYSQL_PASSWORD: root
 phpmyadmin:
- container_name: phpmyadmin
+ container_name: phpmyadmin5
  image: phpmyadmin/phpmyadmin
  links:
    - db
  ports:
-   - "8087:80"
+   - "8087:80"    

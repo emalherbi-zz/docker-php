@@ -25,7 +25,7 @@ Docker && Apache && Php && Mysql (mysql | pdo_mysql) && Mssql (mssql | pdo_dblib
 ## Installation
 
 ```bash
-docker-compose up -d --force-recreate
+docker-compose up -d --build --force-recreate --remove-orphans
 ```
 
 ## Document Root
